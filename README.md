@@ -1,4 +1,7 @@
 # Capston__Project
+초기 프로젝트이나, <br>
+라이브러리를 적용을 하여 리뉴얼 예정 <br>
+
 Visual Section
 ![image](https://github.com/ITb4ng/Capston__Project/assets/105259684/8b49dc6a-2741-4ec8-8a09-bfe125ea0d50)
 Service Section
