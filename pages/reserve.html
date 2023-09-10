@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>일정 예약 서비스</title>
+    <link
+ href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
+      rel="stylesheet"/>
+    <style>
+      #back {
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        max-width: 100%;
+        background-color: black;
+      }
+
+      #back .imgwrap {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      #back .imgview {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        -webkit-transition: opacity 1s ease-in-out;
+        -moz-transition: opacity 1s ease-in-out;
+        -o-transition: opacity 1s ease-in-out;
+        transition: opacity 1s ease-in-out;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+        filter: alpha(opacity=0);
+        opacity: 0;
+      }
+
+      #back .imgview:nth-child(1) {
+        background:url(./dist/images/reserve-info-3.jpg)0 0 no-repeat;
+        background-size: cover;
+      }
+      #back .imgview:nth-child(2) {
+        background:url(./dist/images/reserve-info-2.jpg)0 0 no-repeat;
+        background-size: cover;
+      }
+      #back .imgview:nth-child(3) {
+        background:url(./dist/images/reserve-info-1.jpg)0 0 no-repeat;
+        background-size: cover;
+      }
+      #back .imgview:nth-child(4) {
+        background:url(./dist/images/reserve-info-4.jpg)0 0 no-repeat;
+        background-size: cover;
+      }
+      #back .imgview:nth-child(5) {
+        background:url(./dist/images/reserve-info-5.jpg)0 0 no-repeat;
+        background-size: cover;
+      }
+      #back .imgview:nth-child(6) {
+        background:url(./dist/images/reserve-info-6.jpg)0 0 no-repeat;
+        background-size: cover;
+      }
+      #back .imgview:nth-child(7) {
+        background:url(./dist/images/reserve-info-10.jpg)0 0 no-repeat;
+        background-size: cover;
+      }
+      #back .imgview:nth-child(8) {
+        background:url(./dist/images/reserve-info-8.jpg)0 0 no-repeat;
+        background-size: cover;
+      }
+
+      #back .imgview:nth-child(9) {
+        background:url(./dist/images/reserve-info-9.jpg)0 0 no-repeat;
+        background-size: cover;
+      }
+      #back .imgview:nth-child(10) {
+        background:url(./dist/images/reserve-info-11.jpg)0 0 no-repeat;
+        background-size: cover;
+      }
+      #back .imgview:nth-child(11) {
+        background:url(./dist/images/reserve-info-12.jpg)0 0 no-repeat;
+        background-size: cover;
+      }
+      #back .imgview:nth-child(12) {
+        background:url(./dist/images/reserve-info-13.jpg)0 0 no-repeat;
+        background-size: cover;
+      }
+      #back .imgview:nth-child(13) {
+        background:url(./dist/images/reserve-info-14.jpg)0 0 no-repeat;
+        background-size: cover;
+      }
+
+      #back .imgview.opaque {
+        opacity: 1;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        filter: alpha(opacity=1);
+        
+      }
+
+      /* #bg {
+        background-color: black;
+        width: 100%;
+        height: 100%;
+      } */
+      #container {
+        width: 35%;
+        color: white;
+        font-size: 0.9rem;
+        margin-top: -7rem;
+        margin-left: 20%;
+        float: left;
+
+        /* background-color: #0093e9;
+        background-image: linear-gradient(160deg, #0093e9 0%, #80d0c7 100%); */
+      }
+      #weekDic {
+        font-size: 0.8rem;
+      }
+      .day {
+        width: 11%;
+        height: 100px;
+        display: inline-block;
+        padding: 5px;
+        border: 0.006em solid darkgray;
+          font-size: 20px;
+      }
+      .today {
+        border: 1px solid red;
+        color: red;
+      }
+      .dic {
+        display: inline-block;
+        width: 11%;
+        padding: 5px;
+      }
+      #controller {
+        color: white;
+        margin-top: 15rem;
+       
+      }
+      #controller h3 {
+        margin-bottom: -10px;
+      }
+      #controller .btn div{
+        display: inline;
+      }
+      #controller .btn img {
+        width: 2rem;
+        height: 2rem;
+        filter: invert(85%);
+        transition: 0.3s;
+      }
+      #controller .btn img:hover{
+        transform:scale(1.1);
+        filter: invert(100%);
+      }
+      #year {
+        font-size: 1.7rem;
+        display: inline;
+      }
+      #month {
+        font-size: 2rem;
+        display: inline;
+      }
+      #this-day {
+        font-size: 6rem;
+      }
+      #date {
+        font-size: 3rem;
+      }
+        
+        header{z-index: 999;position:fixed;top: 0;left: 0;width: 100%;display: flex;justify-content: space-between;align-items: center;padding: 10px 200px;transition: 0.6s;background-color: #FFFAF0;}header.sticky{background-color:  #FFFAF0;padding: 10px 180px;}header .header_logo{color:#111;font-size: 30px;font-weight: 350;text-transform: uppercase;text-decoration: none;letter-spacing: 5px;max-width: 1280px;}header .header_menu{position: relative;display: flex;justify-content: center;align-items: center;}header .header_menu a{color: #111;font-size: 16px;font-weight: 500;text-decoration: none;margin: 0 30px;padding: 0 10px;border-radius: 20px;transition:0.3s;transition-property: color, background;}header .header_menu a:hover{color:#111;background: #fff;}header .icon_btn{color:#111;font-size: 25px;cursor: pointer;display: none;}
+    </style>
+  </head>
+  <body>
+  <header>
+        <a href="/index.html" class="header_logo">한보고</a>
+        <div class="header_menu">
+            <div class="icon_btn"><i class="fas fa-times close-btn"></i></div>
+                <a href="/hanbok.html">한복</a>
+                <a href="/notice.html">공지사항</a>
+                <a href="/survey.html">체험마당</a>
+                <a href="/board.html">뽐내기</a>
+                <a href="/contact.html">문의하기</a>
+        </div>
+        <button class="lang" style="border: none; display: inline-flex; background-color: transparent; margin-right: 100px;" >
+            <span class="icon" style="padding: 3px;">
+                <i class="fa-solid fa-globe"></i>
+            </span>
+            <details style="display: inline-flex; align-items: center; padding: 3px;">
+                <summary>KO</summary>
+                <a href="index_EN.html">EN</a>
+                <p>CN</p>
+                <p>EU</p>
+            </details>
+        </button>
+        <div>
+        <a href="/signup/index.html" style="text-decoration: none; color: #444;">로그인</a>
+        </div>
+        <div class="icon_btn"><i class="fas fa-bars menu-btn"></i></div>
+    </header>
+   <section>
+    <div id="container">
+      <h2>
+        베틀한복 / 예약&ndash;대여 서비스
+      </h2>
+      <div id="year"></div>
+      <div id="month"></div>
+      <div id="weekDic"></div>
+      <div id="calenda"></div>
+    </div>
+    <div id="controller">
+      <h3>Today is ...</h3>
+      <div id="this-day"></div>
+      <div id="date"></div>
+      <div class="btn">
+        <div onclick="handleWeek(-1)"><img src="./dist/images/previous.png"/></div>
+        <div onclick="handleWeek(1)"><img src="./dist/images/next.png" style='margin-left:2rem'/></div>
+      </div>
+    </div>
+    <div id="back">
+      <div class="imgwrap">
+        <div class="imgview opaque" id="1"></div>
+        <div class="imgview" id="2"></div>
+        <div class="imgview" id="3"></div>
+        <div class="imgview" id="4"></div>
+        <div class="imgview" id="5"></div>
+        <div class="imgview" id="6"></div>
+        <div class="imgview" id="7"></div>
+        <div class="imgview" id="8"></div>
+        <div class="imgview" id="9"></div>
+        <div class="imgview" id="10"></div>
+        <div class="imgview" id="11"></div>
+        <div class="imgview" id="12"></div>
+        <div class="imgview" id="13"></div>
+      </div>
+    </div>
+    <div id="bg"></div>
+    </section>
+    <script>
+      
+      let today = new Date();
+      let thisDay = today.getDate();
+      let year = today.getFullYear();
+      let month = today.getMonth() + 1;
+      let date = today.getDay();
+      function getFirstDayIndex() {
+        let fistDayIndex = new Date(`${year}-${month}-01`).getDay();
+        return fistDayIndex;
+      }
+      let fistDayIndex = getFirstDayIndex();
+      let index = 1;
+
+      const calDic = {
+        1: 31,
+        2: 28,
+        3: 31,
+        4: 30,
+        5: 31,
+        6: 30,
+        7: 31,
+        8: 31,
+        9: 30,
+        10: 31,
+        11: 30,
+        12: 31,
+      };
+      const weekDic = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+      const weekDic2 = [
+        "SUNDAY",
+        "MONDAY",
+        "TUESDAY",
+        "WEDNESDAY",
+        "THURSDAY",
+        "FRIDAY",
+        "SATDAY",
+      ];
+      weekDic.map((dic) => {
+        let container = document.querySelector("#weekDic");
+        let newElement = document.createElement("div");
+        newElement.id = dic;
+        newElement.className = "dic";
+        newElement.innerHTML = dic;
+        container.appendChild(newElement);
+      });
+      var day = 1;
+      function makeFirstWeek() {
+        day = 1;
+        let firstWeek = [];
+        i = 0;
+        fistDayIndex = getFirstDayIndex();
+        while (i < 7) {
+          if (i < fistDayIndex) {
+            firstWeek.unshift(".");
+          } else {
+            firstWeek.push(day);
+            day += 1;
+          }
+          i += 1;
+        }
+        return firstWeek;
+      }
+
+      function makeCalendar() {
+        let calenda = [];
+        let container = document.querySelector("#calenda");
+        container.innerHTML = "";
+        calenda.push(makeFirstWeek());
+        let m = calDic[month * 1];
+        let week = [];
+        let nDay = 1;
+        while (day <= m) {
+          week.push(day);
+          day += 1;
+          if (week.length === 7) {
+            calenda.push(week);
+            week = [];
+          }
+        }
+        calenda.push(week);
+        calenda.map((week) => {
+          week.map((day) => {
+            let newElement = document.createElement("div");
+
+            newElement.className =
+              day === today.getDate() && month === today.getMonth() + 1
+                ? "day today"
+                : "day";
+            newElement.innerHTML = day;
+            container.appendChild(newElement);
+          });
+        });
+        console.log(calenda);
+        return calenda;
+      }
+      
+      let calenda = makeCalendar();
+
+      function handleWeek(opt) {
+        document.getElementById(index).className = "imgview";
+        if (opt > 0) {
+          month += 1;
+          if (month > 12) {
+            month = 1;
+            year += 1;
+          }
+          index += 1;
+          index > 13 ? (index = 1) : index;
+        } else {
+          month -= 1;
+          if (month < 1) {
+            month = 12;
+            year -= 1;
+          }
+          index -= 1;
+          index < 1 ? (index = 13) : index;
+        }
+        console.log(year, month);
+        console.log(index);
+        makeCalendar();
+        document.getElementById("year").innerHTML = "";
+        document.getElementById("month").innerHTML = "";
+        document.getElementById("year").innerHTML = year + " / ";
+        document.getElementById("month").innerHTML = month;
+        document.getElementById(index).className = "imgview opaque";
+      }
+      function hoverAction(){
+
+      }
+
+      document.getElementById("year").innerHTML = year + " / ";
+      document.getElementById("month").innerHTML = month;
+      document.getElementById("this-day").innerHTML = thisDay;
+      document.getElementById("date").innerHTML = weekDic2[date];
+    </script>
+  </body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>게시판</title>
+    <style>
+        *{color: #333;}.noti-wrap{float: left;width: 50%;margin-right: 3.142%;
+        font-family: sans-serif;}
+        .mboard{
+            border-top: 1px solid #999;
+            border-bottom: 1px solid #999;
+        }
+        .mboard tr:nth-child(n+1) th, .mboard tr:nth-child(n+1) td{
+            border-top: 0;
+            border-bottom: 1px dotted gray;
+        }
+        .mboard th {
+        text-align: left;
+        font-weight: normal;
+        padding: 12px 5px 13px 12px;
+        font-size: 13px;
+        margin: 0;
+        border: 0;
+        vertical-align: baseline;
+        }
+        .tab1{
+            list-style: none;
+        }
+        .tab-container{
+            width: 100%;
+        }
+        ul{
+            margin: 0;
+            padding: 0;
+        }
+        .current .title , .mboard th a{
+            text-decoration: none;
+            list-style: none;
+            color: #222;
+        }
+        .mboard td{
+            text-align: right;
+        }
+        #title_wrap h5{
+            font-weight: 400;
+            color: #333333;
+        }
+        i{
+            float: right;
+            cursor: pointer;
+            font-size: 40px;
+            margin-top: -10px;
+        }
+
+        @media (max-width:768px){
+            .noti-wrap{
+                width: 100%;
+                display: block;
+                clear: both;
+            }
+            .mboard{
+                width:100%;
+            }
+}
+    </style>
+</head>
+<body>
+	<div class="noti-wrap">
+		<div class="bbs-tab">
+			<ul class="tab1">
+				<li class="current">
+				<div id="title_wrap">
+					<h5><a href="#" class="title" style="font-size: 20px;">게시판</a></h5>
+				</div>
+					<div class="tab-container">
+						<p class="current"></p>
+						<table class="mboard">
+							<tbody><tr>
+								<th><a href="">옷감이 너무좋아요</a></th>
+								<td>2022.10.11</td>
+							</tr>
+
+							<tr>
+								<th><a href="">오랜만에 남자친구❤랑 경복궁 야간개장 다녀왔어요!!</a></th>
+								<td>2022.10.11</td>
+							</tr>
+
+							<tr>
+								<th><a href="">한복대여소의 매장정보랑 한복의 종류를 미리 볼 수 있어서 좋았어요!!</a></th>
+								<td>2022.09.21</td>
+							</tr>
+
+							<tr>
+								<th><a href="">새로운 한복 스타일링 소개합니다~</a></th>
+								<td>2022.09.19</td>
+							</tr>
+
+							<tr>
+								<th><a href="">퓨전한복 너무 잘 어울리지 않나요?!</a></th>
+								<td>2022.08.31</td>
+							</tr>
+
+							<tr>
+								<th><a href="">작년엔 딱 맞았는데 올해는 옷이 너무 작다...</a></th>
+								<td>2022.08.31</td>
+							</tr>
+
+							<tr>
+								<th><a href="">I Love It Korea , Hanbok is so comfortable❤</a></th>
+								<td>2022.08.30</td>
+							</tr>
+						</tbody></table>
+					</div>
+				</li>
+            </ul>
+		</div>
+	</div>
+	</body>
+</html>
